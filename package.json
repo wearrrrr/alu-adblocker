@@ -1,0 +1,18 @@
+{
+  "name": "alu-adblocker",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "esbuild --bundle --minify src/index.js --outdir=./dist/  --platform=browser"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@adguard/tsurlfilter": "^2.2.19"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.2"
+  }
+}
