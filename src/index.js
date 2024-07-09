@@ -26,6 +26,7 @@ async function init() {
     
         for (let list of lists) {
             const text = await fetch(list.url).then(response => response.text());
+            console.log("Fetched blocklist " + list.title)
             index++;
             const ruleList = new StringRuleList(index, text, false, false);
             parsedLists.push(ruleList);
@@ -54,7 +55,9 @@ async function filterRequest(fetchEvent) {
     const request = new Request(url);
     const result = engine.matchRequest(request);
     if (result.basicRule !== null) {
-        console.log("Blocking request to " + url + " because of rule " + result.basicRule.ruleText);
+        if (fetchEvent.workerware.config.debug) {
+            console.log("Blocking request to " + url + " because of rule " + result.basicRule.ruleText);
+        }
         return null;
     }
     return result;
